@@ -1,0 +1,119 @@
+{
+  "model_name": "TrafficGuard AI BaselineRidge Risk Predictor",
+  "training_data_mode": "SYNTHETIC_DEVELOPMENT",
+  "disclaimer": "DEVELOPMENT ONLY. Synthetic training data. Must be replaced with real-world sensor/accident data for production.",
+  "training_timestamp": "2026-08-18T08:37:19.966375+00:00",
+  "random_seed": 42,
+  "feature_count": 18,
+  "feature_names": [
+    "traffic_speed",
+    "free_flow_speed",
+    "congestion_ratio",
+    "speed_deficit",
+    "speed_ratio",
+    "traffic_volume",
+    "volume_capacity_ratio",
+    "incident_frequency",
+    "incident_index",
+    "accident_history",
+    "accident_severity",
+    "road_factor",
+    "population_factor",
+    "traffic_pressure_composite",
+    "hour_of_day",
+    "day_of_week",
+    "is_weekend",
+    "is_peak_hour"
+  ],
+  "target_variable": "risk_score",
+  "target_bounds": [
+    0.0,
+    100.0
+  ],
+  "split_sizes": {
+    "train_samples": 11750,
+    "validation_samples": 2500,
+    "test_samples": 2550,
+    "total_samples": 16800
+  },
+  "selected_model_type": "BaselineRidge",
+  "selection_rationale": "BaselineRidge achieved superior validation performance with RMSE of 0.8705 vs 0.9808.",
+  "metrics": {
+    "baseline_train": {
+      "split": "Train",
+      "sample_count": 11750,
+      "mae": 0.7514,
+      "rmse": 0.8678,
+      "r2": 0.9967,
+      "max_error": 1.5651,
+      "mean_residual": -0.0
+    },
+    "baseline_val": {
+      "split": "Validation",
+      "sample_count": 2500,
+      "mae": 0.753,
+      "rmse": 0.8705,
+      "r2": 0.9967,
+      "max_error": 1.5504,
+      "mean_residual": -0.0144
+    },
+    "xgboost_train": {
+      "split": "Train",
+      "sample_count": 11750,
+      "mae": 0.6855,
+      "rmse": 0.8172,
+      "r2": 0.997,
+      "max_error": 2.6446,
+      "mean_residual": 0.0002
+    },
+    "xgboost_val": {
+      "split": "Validation",
+      "sample_count": 2500,
+      "mae": 0.8184,
+      "rmse": 0.9808,
+      "r2": 0.9958,
+      "max_error": 3.505,
+      "mean_residual": -0.0147
+    },
+    "selected_test": {
+      "split": "Test",
+      "sample_count": 2550,
+      "mae": 0.7694,
+      "rmse": 0.8879,
+      "r2": 0.9965,
+      "max_error": 1.5265,
+      "mean_residual": -0.041
+    }
+  },
+  "feature_importances": {
+    "congestion_ratio": 0.162988,
+    "speed_ratio": 0.162988,
+    "road_factor": 0.119252,
+    "incident_index": 0.11705,
+    "incident_frequency": 0.11705,
+    "accident_history": 0.094481,
+    "accident_severity": 0.094481,
+    "volume_capacity_ratio": 0.054585,
+    "traffic_pressure_composite": 0.054341,
+    "population_factor": 0.01738,
+    "speed_deficit": 0.001646,
+    "traffic_volume": 0.001071,
+    "traffic_speed": 0.001068,
+    "free_flow_speed": 0.00053,
+    "hour_of_day": 0.000433,
+    "is_weekend": 0.000374,
+    "is_peak_hour": 0.00023,
+    "day_of_week": 5.2e-05
+  },
+  "xgboost_hyperparameters": {
+    "n_estimators": 300,
+    "learning_rate": 0.05,
+    "max_depth": 5,
+    "min_child_weight": 3,
+    "subsample": 0.85,
+    "colsample_bytree": 0.85,
+    "reg_alpha": 0.1,
+    "reg_lambda": 1.0,
+    "best_iteration": 299
+  }
+}
